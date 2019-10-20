@@ -1,4 +1,4 @@
-﻿{
+{
   "runtime": "Default",
   "defaultVariables": null,
   "documentGenerator": {
@@ -38,7 +38,7 @@
       "useTransformResultMethod": false,
       "generateDtoTypes": true,
       "operationGenerationMode": "MultipleClientsFromOperationId",
-      "markOptionalProperties": false,
+      "markOptionalProperties": true,
       "generateCloneMethod": false,
       "typeStyle": "Class",
       "classTypes": [],
@@ -151,6 +151,7 @@
       "useActionResultType": false,
       "generateModelValidationAttributes": false,
       "routeNamingStrategy": "None",
+      "basePath": null,
       "className": "{controller}",
       "operationGenerationMode": "MultipleClientsFromOperationId",
       "additionalNamespaceUsages": [
