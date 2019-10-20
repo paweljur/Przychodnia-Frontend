@@ -1,0 +1,32 @@
+.login-page {
+  display: flex;
+  background-color: #eeeeee;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+
+  &__window {
+    display: flex;
+    flex-direction: column;
+    height: 19em;
+    width: 30em;
+    padding: 2em 3em;
+    margin: 25% auto auto auto;
+
+    .mat-card-content {
+      padding-top: 2em;
+
+      .mat-form-field {
+        display: block;
+        padding-bottom: 1.5em;
+      }
+    }
+
+    .mat-card-actions {
+      margin-top: auto;
+      padding-bottom: 1em;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
