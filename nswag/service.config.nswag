@@ -1,4 +1,4 @@
-{
+﻿{
   "runtime": "Default",
   "defaultVariables": null,
   "documentGenerator": {
@@ -40,7 +40,7 @@
       "operationGenerationMode": "MultipleClientsFromOperationId",
       "markOptionalProperties": true,
       "generateCloneMethod": false,
-      "typeStyle": "Class",
+      "typeStyle": "Interface",
       "classTypes": [],
       "extendedClasses": [],
       "extensionCode": "service.extensions.ts",
@@ -62,7 +62,7 @@
       "enumNameGeneratorType": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "../src/shared/service-proxies/service-proxies.ts"
+      "output": "../src/core/api/service-proxies.ts"
     },
     "openApiToCSharpClient": {
       "clientBaseClass": null,

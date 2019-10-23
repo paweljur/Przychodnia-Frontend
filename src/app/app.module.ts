@@ -4,13 +4,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ServiceProxyModule } from 'src/shared/service-proxies/service-proxy.module';
+import { ApiModule } from 'src/core/api/api.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { ServicesModule } from 'src/core/services/services.module';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent],
+  declarations: [AppComponent, LoginPageComponent, MainComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,8 +22,9 @@ import { LoginPageComponent } from './login-page/login-page.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    ServiceProxyModule,
+    ApiModule,
     HttpClientModule,
+    ServicesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

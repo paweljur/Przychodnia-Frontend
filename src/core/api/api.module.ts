@@ -4,4 +4,4 @@ import * as ServiceProxies from './service-proxies';
 @NgModule({
   providers: [ServiceProxies.UserServiceProxy],
 })
-export class ServiceProxyModule {}
+export class ApiModule {}

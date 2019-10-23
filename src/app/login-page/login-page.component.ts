@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ILoginCredentialsDto, LoginCredentialsDto, User, UserServiceProxy } from 'src/shared/service-proxies/service-proxies';
+import { LoginCredentialsDto, User } from 'src/core/api/service-proxies';
+import { AuthenticationService } from 'src/core/services/authentication.service';
 
 @Component({
   selector: 'app-login-page',
@@ -10,13 +11,12 @@ import { ILoginCredentialsDto, LoginCredentialsDto, User, UserServiceProxy } fro
 export class LoginPageComponent {
   loginCredentials: FormGroup = new FormGroup({
     username: new FormControl(null, [Validators.required]),
-    // password: new FormControl(null, [Validators.required, Validators.minLength(12)]),
-    password: new FormControl(null, [Validators.required]),
+    password: new FormControl(null, [Validators.required, Validators.minLength(11)]),
   });
 
-  constructor(private _userService: UserServiceProxy) {}
+  constructor(private _authenticationService: AuthenticationService) {}
 
-  submit(credentials: ILoginCredentialsDto): void {
-    this._userService.authenticate(new LoginCredentialsDto(credentials)).subscribe((user: User) => console.log(user));
+  submit(credentials: LoginCredentialsDto): void {
+    this._authenticationService.authenticate(credentials).subscribe((user: User) => console.log(user));
   }
 }
