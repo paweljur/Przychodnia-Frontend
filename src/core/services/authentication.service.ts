@@ -6,9 +6,9 @@ import { LoginCredentialsDto, User, UserServiceProxy } from '../api/service-prox
 @Injectable()
 export class AuthenticationService {
   private readonly _currentUserKey: string = 'currentUser';
-  private readonly _currentUser: BehaviorSubject<User>;
+  private readonly _currentUser: BehaviorSubject<User | null>;
 
-  get currentUser(): User {
+  get currentUser(): User | null {
     return this._currentUser.value;
   }
   constructor(private _userService: UserServiceProxy) {
@@ -24,5 +24,10 @@ export class AuthenticationService {
         return user;
       })
     );
+  }
+
+  logout(): void {
+    localStorage.removeItem(this._currentUserKey);
+    this._currentUser.next(null);
   }
 }
