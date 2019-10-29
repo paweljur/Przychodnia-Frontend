@@ -1,0 +1,18 @@
+.mat-card {
+  padding-top: 32px;
+  padding-bottom: 0;
+  border-radius: 0;
+
+  .mat-card-header {
+    width: 250px;
+    height: 60px;
+
+    .avatar {
+      font-size: 40px;
+    }
+
+    .logout-button {
+      margin: 0 0 auto auto;
+    }
+  }
+}

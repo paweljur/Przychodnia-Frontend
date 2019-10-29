@@ -1,0 +1,12 @@
+<mat-card class="mat-elevation-z0">
+  <mat-card-header>
+    <i mat-card-avatar class="material-icons avatar">perm_identity</i>
+    <mat-card-title> {{ user?.name }} {{ user?.surname }} </mat-card-title>
+    <mat-card-subtitle>
+      {{ user.role }}
+    </mat-card-subtitle>
+    <button mat-icon-button class="logout-button" (click)="logout()">
+      <i class="material-icons">exit_to_app</i>
+    </button>
+  </mat-card-header>
+</mat-card>

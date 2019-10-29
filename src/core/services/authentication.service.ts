@@ -1,24 +1,25 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { LoginCredentialsDto, User, UserServiceProxy } from '../api/service-proxies';
+import { LoginCredentialsDto, UserServiceProxy, CurrentUserDto } from '../api/service-proxies';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
   private readonly _currentUserKey: string = 'currentUser';
-  private readonly _currentUser: BehaviorSubject<User | null>;
+  private readonly _currentUser: BehaviorSubject<CurrentUserDto | null>;
 
-  get currentUser(): User | null {
+  get currentUser(): CurrentUserDto | null {
     return this._currentUser.value;
   }
-  constructor(private _userService: UserServiceProxy) {
+  constructor(private _userService: UserServiceProxy, private _router: Router) {
     const userFromStorage: string = localStorage.getItem(this._currentUserKey);
-    this._currentUser = new BehaviorSubject<User>(JSON.parse(userFromStorage));
+    this._currentUser = new BehaviorSubject<CurrentUserDto>(JSON.parse(userFromStorage));
   }
 
-  authenticate(credentials: LoginCredentialsDto): Observable<User> {
+  authenticate(credentials: LoginCredentialsDto): Observable<CurrentUserDto> {
     return this._userService.authenticate(credentials).pipe(
-      map((user: User) => {
+      map((user: CurrentUserDto) => {
         localStorage.setItem(this._currentUserKey, JSON.stringify(user));
         this._currentUser.next(user);
         return user;
@@ -29,5 +30,6 @@ export class AuthenticationService {
   logout(): void {
     localStorage.removeItem(this._currentUserKey);
     this._currentUser.next(null);
+    this._router.navigateByUrl('/login');
   }
 }

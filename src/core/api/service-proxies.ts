@@ -109,11 +109,11 @@ export class UserServiceProxy {
             (<any>response).error instanceof Blob ? (<any>response).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
-        if (status === 200) {
+        if (status === 201) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
-            let result200: any = null;
-            result200 = _responseText === "" ? null : <User>JSON.parse(_responseText, this.jsonParseReviver);
-            return _observableOf(result200);
+            let result201: any = null;
+            result201 = _responseText === "" ? null : <User>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result201);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
@@ -159,7 +159,13 @@ export class UserServiceProxy {
             (<any>response).error instanceof Blob ? (<any>response).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
-        if (status === 200) {
+        if (status === 404) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result404: any = null;
+            result404 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result404);
+            }));
+        } else if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             result200 = _responseText === "" ? null : <User>JSON.parse(_responseText, this.jsonParseReviver);
@@ -212,7 +218,19 @@ export class UserServiceProxy {
             (<any>response).error instanceof Blob ? (<any>response).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
-        if (status === 200) {
+        if (status === 400) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result400: any = null;
+            result400 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result400);
+            }));
+        } else if (status === 404) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result404: any = null;
+            result404 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result404);
+            }));
+        } else if (status === 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             return _observableOf<void>(<any>null);
             }));
@@ -260,11 +278,17 @@ export class UserServiceProxy {
             (<any>response).error instanceof Blob ? (<any>response).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
-        if (status === 200) {
+        if (status === 404) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
-            let result200: any = null;
-            result200 = _responseText === "" ? null : <User>JSON.parse(_responseText, this.jsonParseReviver);
-            return _observableOf(result200);
+            let result404: any = null;
+            result404 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result404);
+            }));
+        } else if (status === 201) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result201: any = null;
+            result201 = _responseText === "" ? null : <User>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result201);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
@@ -274,7 +298,7 @@ export class UserServiceProxy {
         return _observableOf<User>(<any>null);
     }
 
-    authenticate(credentials: LoginCredentialsDto): Observable<User> {
+    authenticate(credentials: LoginCredentialsDto): Observable<CurrentUserDto> {
         let url_ = this.baseUrl + "/api/user/auth";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -297,14 +321,14 @@ export class UserServiceProxy {
                 try {
                     return this.processAuthenticate(<any>response_);
                 } catch (e) {
-                    return <Observable<User>><any>_observableThrow(e);
+                    return <Observable<CurrentUserDto>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<User>><any>_observableThrow(response_);
+                return <Observable<CurrentUserDto>><any>_observableThrow(response_);
         }));
     }
 
-    protected processAuthenticate(response: HttpResponseBase): Observable<User> {
+    protected processAuthenticate(response: HttpResponseBase): Observable<CurrentUserDto> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -314,15 +338,21 @@ export class UserServiceProxy {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : <User>JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = _responseText === "" ? null : <CurrentUserDto>JSON.parse(_responseText, this.jsonParseReviver);
             return _observableOf(result200);
+            }));
+        } else if (status === 400) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result400: any = null;
+            result400 = _responseText === "" ? null : <ApiError>JSON.parse(_responseText, this.jsonParseReviver);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result400);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<User>(<any>null);
+        return _observableOf<CurrentUserDto>(<any>null);
     }
 }
 
@@ -330,10 +360,29 @@ export interface User {
     id: number;
     name?: string | undefined;
     surname?: string | undefined;
-    role?: string | undefined;
-    username?: string | undefined;
-    password?: string | undefined;
-    token?: string | undefined;
+    role: string;
+    username: string;
+    password: string;
+}
+
+export interface ProblemDetails {
+    type?: string | undefined;
+    title?: string | undefined;
+    status?: number | undefined;
+    detail?: string | undefined;
+    instance?: string | undefined;
+    extensions?: { [key: string]: any; } | undefined;
+}
+
+export interface CurrentUserDto {
+    name?: string | undefined;
+    surname?: string | undefined;
+    role: string;
+    token: string;
+}
+
+export interface ApiError {
+    message: string;
 }
 
 export interface LoginCredentialsDto {
