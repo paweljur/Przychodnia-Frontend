@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { CurrentUserComponent } from './main/components/current-user/current-user.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, LoginPageComponent, MainComponent, CurrentUserComponent],
@@ -39,6 +40,7 @@ import { CurrentUserComponent } from './main/components/current-user/current-use
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    SharedModule,
   ],
   providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } }],
   bootstrap: [AppComponent],
