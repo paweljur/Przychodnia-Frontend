@@ -181,7 +181,7 @@ export class UserServiceProxy {
         if (status === 400) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result400: any = null;
-            result400 = _responseText === "" ? null : <string>JSON.parse(_responseText, this.jsonParseReviver);
+            result400 = _responseText === "" ? null : <ApiError>JSON.parse(_responseText, this.jsonParseReviver);
             return throwException("A server side error occurred.", status, _responseText, _headers, result400);
             }));
         } else if (status === 200) {
