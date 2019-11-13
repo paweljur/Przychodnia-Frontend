@@ -3,6 +3,12 @@
   display: flex;
   flex-direction: column;
 
+  .options {
+    padding: 30px 30px 30px 30px;
+    display: flex;
+    align-items: center;
+  }
+
   app-generic-table {
     flex: 1 1 auto;
   }

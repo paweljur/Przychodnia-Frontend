@@ -21,17 +21,21 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
 import { CurrentUserComponent } from './main/components/current-user/current-user.component';
 import { SharedModule } from './shared/shared.module';
 import { AllUsersPageComponent } from './feature/all-users-page/all-users-page.component';
+import { NewUserDialogComponent } from './feature/all-users-page/new-user-dialog/new-user-dialog.component';
+import { MatDialogModule, MatSelectModule } from '@angular/material';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, MainComponent, CurrentUserComponent, AllUsersPageComponent],
+  declarations: [AppComponent, LoginPageComponent, MainComponent, CurrentUserComponent, AllUsersPageComponent, NewUserDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatSnackBarModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -43,6 +47,7 @@ import { AllUsersPageComponent } from './feature/all-users-page/all-users-page.c
     MatListModule,
     SharedModule,
   ],
+  entryComponents: [NewUserDialogComponent],
   providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } }],
   bootstrap: [AppComponent],
 })

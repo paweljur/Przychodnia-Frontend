@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Add patient</h1>
+<form [formGroup]="newUserForm">
+  <mat-form-field>
+    <input matInput formControlName="username" placeholder="Username" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="password" placeholder="Password" type="password" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="name" placeholder="Name" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="surname" placeholder="Surname" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="role" placeholder="Role" required />
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!newUserForm.valid">
+    Submit
+  </button>
+
+  <button mat-button (click)="abort()">Abort</button>
+</form>
