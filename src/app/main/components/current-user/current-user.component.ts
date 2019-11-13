@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { CurrentUserDto } from 'src/core/api/service-proxies';
+import { Component, Input } from '@angular/core';
+import { LoggedInUserDto } from 'src/core/api/service-proxies';
 import { AuthenticationService } from 'src/core/services/authentication.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthenticationService } from 'src/core/services/authentication.service'
 })
 export class CurrentUserComponent {
   @Input()
-  user: CurrentUserDto;
+  user: LoggedInUserDto;
 
   constructor(private _authenticationService: AuthenticationService) {}
 

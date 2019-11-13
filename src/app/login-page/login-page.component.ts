@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginCredentialsDto, User, ApiException } from 'src/core/api/service-proxies';
+import { LoginCredentialsDto, ApiException } from 'src/core/api/service-proxies';
 import { AuthenticationService } from 'src/core/services/authentication.service';
 import { Router } from '@angular/router';
 import { MatSnackBar, SimpleSnackBar, MatSnackBarRef } from '@angular/material';
@@ -19,9 +19,10 @@ export class LoginPageComponent {
   constructor(private _authenticationService: AuthenticationService, private _snackBar: MatSnackBar, private _router: Router) {}
 
   submit(credentials: LoginCredentialsDto): void {
-    this._authenticationService
-      .authenticate(credentials)
-      .subscribe(() => this._handleSuccesfulAuth(), (error: ApiException) => this._handleError(error));
+    this._authenticationService.authenticate(credentials).subscribe(
+      () => this._handleSuccesfulAuth(),
+      (error: ApiException) => this._handleError(error)
+    );
   }
 
   private _handleSuccesfulAuth(): void {

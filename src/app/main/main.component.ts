@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthenticationService } from 'src/core/services/authentication.service';
-import { CurrentUserDto } from 'src/core/api/service-proxies';
+import { LoggedInUserDto } from 'src/core/api/service-proxies';
 
 @Component({
   selector: 'app-main',
@@ -16,7 +16,7 @@ export class MainComponent implements OnInit {
     shareReplay()
   );
 
-  currentUser: CurrentUserDto;
+  currentUser: LoggedInUserDto;
 
   constructor(private _breakpointObserver: BreakpointObserver, private _authenticationService: AuthenticationService) {}
 

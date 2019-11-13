@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
-import { CurrentUserDto } from '../api/service-proxies';
+import { LoggedInUserDto } from '../api/service-proxies';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const currentUser: CurrentUserDto = this._authenticationService.currentUser;
+    const currentUser: LoggedInUserDto = this._authenticationService.currentUser;
     if (!currentUser) {
       this._router.navigate(['/login']);
 
