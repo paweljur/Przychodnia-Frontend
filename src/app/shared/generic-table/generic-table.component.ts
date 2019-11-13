@@ -1,16 +1,7 @@
 import { Component, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { MatPaginator, MatSort, PageEvent, Sort } from '@angular/material';
-
-export class ColumnInfoItem {
-  columnDef: string;
-  header: string;
-  cell: (element: any) => string;
-}
-
-export class SelectedOption {
-  optionName: string;
-  row: object;
-}
+import { ColumnInfoItem } from './models/ColumnInfoItem';
+import { SelectedOption } from './models/SelectedOption';
 
 @Component({
   selector: 'app-generic-table',

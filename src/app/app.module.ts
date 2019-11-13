@@ -20,9 +20,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { CurrentUserComponent } from './main/components/current-user/current-user.component';
 import { SharedModule } from './shared/shared.module';
+import { AllUsersPageComponent } from './feature/all-users-page/all-users-page.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, MainComponent, CurrentUserComponent],
+  declarations: [AppComponent, LoginPageComponent, MainComponent, CurrentUserComponent, AllUsersPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

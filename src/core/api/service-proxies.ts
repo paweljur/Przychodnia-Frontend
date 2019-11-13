@@ -25,7 +25,7 @@ export class UserServiceProxy {
         this.baseUrl = baseUrl ? baseUrl : "https://localhost:5001";
     }
 
-    getAllUsers(): Observable<UserInfoDto> {
+    getAllUsers(): Observable<UserInfoDto[]> {
         let url_ = this.baseUrl + "/api/User";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -44,14 +44,14 @@ export class UserServiceProxy {
                 try {
                     return this.processGetAllUsers(<any>response_);
                 } catch (e) {
-                    return <Observable<UserInfoDto>><any>_observableThrow(e);
+                    return <Observable<UserInfoDto[]>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<UserInfoDto>><any>_observableThrow(response_);
+                return <Observable<UserInfoDto[]>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetAllUsers(response: HttpResponseBase): Observable<UserInfoDto> {
+    protected processGetAllUsers(response: HttpResponseBase): Observable<UserInfoDto[]> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -67,7 +67,7 @@ export class UserServiceProxy {
         } else if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : <UserInfoDto>JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = _responseText === "" ? null : <UserInfoDto[]>JSON.parse(_responseText, this.jsonParseReviver);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -75,7 +75,7 @@ export class UserServiceProxy {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<UserInfoDto>(<any>null);
+        return _observableOf<UserInfoDto[]>(<any>null);
     }
 
     registerNewUser(user: NewUserDto): Observable<void> {
