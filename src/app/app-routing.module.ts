@@ -5,6 +5,7 @@ import { MainComponent } from './main/main.component';
 import { AuthGuard } from 'src/core/guards/auth.guard';
 import { AllUsersPageComponent } from './feature/all-users-page/all-users-page.component';
 import { AllAppointmentsPageComponent } from './feature/all-appointments-page/all-appointments-page.component';
+import { MakeAppointmentPageComponent } from './feature/make-appointment-page/make-appointment-page.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path: 'appointments',
         component: AllAppointmentsPageComponent,
+      },
+      {
+        path: 'make-appointment',
+        component: MakeAppointmentPageComponent,
       },
     ],
   },

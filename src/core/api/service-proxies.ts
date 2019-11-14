@@ -329,7 +329,7 @@ export class RegistrationServiceProxy {
         return _observableOf<void>(<any>null);
     }
 
-    getAllPatients(): Observable<PatientDto[]> {
+    getAllPatients(): Observable<Patient[]> {
         let url_ = this.baseUrl + "/api/registration";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -348,14 +348,14 @@ export class RegistrationServiceProxy {
                 try {
                     return this.processGetAllPatients(<any>response_);
                 } catch (e) {
-                    return <Observable<PatientDto[]>><any>_observableThrow(e);
+                    return <Observable<Patient[]>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<PatientDto[]>><any>_observableThrow(response_);
+                return <Observable<Patient[]>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetAllPatients(response: HttpResponseBase): Observable<PatientDto[]> {
+    protected processGetAllPatients(response: HttpResponseBase): Observable<Patient[]> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -371,7 +371,7 @@ export class RegistrationServiceProxy {
         } else if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : <PatientDto[]>JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = _responseText === "" ? null : <Patient[]>JSON.parse(_responseText, this.jsonParseReviver);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -379,7 +379,7 @@ export class RegistrationServiceProxy {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<PatientDto[]>(<any>null);
+        return _observableOf<Patient[]>(<any>null);
     }
 
     addNewPatient(patient: NewPatientDto): Observable<void> {
@@ -511,13 +511,6 @@ export interface NewAppointmentDto extends ValueObject {
     patientId?: number | undefined;
     doctorId?: number | undefined;
     appointmentDate?: Date | undefined;
-}
-
-export interface PatientDto extends ValueObject {
-    id: number;
-    name?: string | undefined;
-    surname?: string | undefined;
-    identityNumber: string;
 }
 
 export interface NewPatientDto extends ValueObject {

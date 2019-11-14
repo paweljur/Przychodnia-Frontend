@@ -24,6 +24,7 @@ import { AllUsersPageComponent } from './feature/all-users-page/all-users-page.c
 import { NewUserDialogComponent } from './feature/all-users-page/new-user-dialog/new-user-dialog.component';
 import { MatDialogModule, MatSelectModule } from '@angular/material';
 import { AllAppointmentsPageComponent } from './feature/all-appointments-page/all-appointments-page.component';
+import { MakeAppointmentPageComponent } from './feature/make-appointment-page/make-appointment-page.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { AllAppointmentsPageComponent } from './feature/all-appointments-page/al
     AllUsersPageComponent,
     NewUserDialogComponent,
     AllAppointmentsPageComponent,
+    MakeAppointmentPageComponent,
   ],
   imports: [
     BrowserModule,
