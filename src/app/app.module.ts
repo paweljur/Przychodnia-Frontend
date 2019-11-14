@@ -23,9 +23,18 @@ import { SharedModule } from './shared/shared.module';
 import { AllUsersPageComponent } from './feature/all-users-page/all-users-page.component';
 import { NewUserDialogComponent } from './feature/all-users-page/new-user-dialog/new-user-dialog.component';
 import { MatDialogModule, MatSelectModule } from '@angular/material';
+import { AllAppointmentsPageComponent } from './feature/all-appointments-page/all-appointments-page.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, MainComponent, CurrentUserComponent, AllUsersPageComponent, NewUserDialogComponent],
+  declarations: [
+    AppComponent,
+    LoginPageComponent,
+    MainComponent,
+    CurrentUserComponent,
+    AllUsersPageComponent,
+    NewUserDialogComponent,
+    AllAppointmentsPageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

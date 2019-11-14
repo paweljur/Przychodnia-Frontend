@@ -4,6 +4,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { MainComponent } from './main/main.component';
 import { AuthGuard } from 'src/core/guards/auth.guard';
 import { AllUsersPageComponent } from './feature/all-users-page/all-users-page.component';
+import { AllAppointmentsPageComponent } from './feature/all-appointments-page/all-appointments-page.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: 'users',
         component: AllUsersPageComponent,
+      },
+      {
+        path: 'appointments',
+        component: AllAppointmentsPageComponent,
       },
     ],
   },

@@ -44,3 +44,11 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+::ng-deep .mat-list-item-content {
+  border-radius: inherit;
+
+  .mat-ripple {
+    border-radius: inherit;
+  }
+}
