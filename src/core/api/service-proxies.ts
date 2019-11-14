@@ -382,7 +382,7 @@ export class RegistrationServiceProxy {
         return _observableOf<Patient[]>(<any>null);
     }
 
-    addNewPatient(patient: NewPatientDto): Observable<void> {
+    addNewPatient(patient: NewPatientDto): Observable<Patient> {
         let url_ = this.baseUrl + "/api/registration";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -394,6 +394,7 @@ export class RegistrationServiceProxy {
             responseType: "blob",
             headers: new HttpHeaders({
                 "Content-Type": "application/json", 
+                "Accept": "application/json"
             })
         };
 
@@ -404,14 +405,14 @@ export class RegistrationServiceProxy {
                 try {
                     return this.processAddNewPatient(<any>response_);
                 } catch (e) {
-                    return <Observable<void>><any>_observableThrow(e);
+                    return <Observable<Patient>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<void>><any>_observableThrow(response_);
+                return <Observable<Patient>><any>_observableThrow(response_);
         }));
     }
 
-    protected processAddNewPatient(response: HttpResponseBase): Observable<void> {
+    protected processAddNewPatient(response: HttpResponseBase): Observable<Patient> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -427,19 +428,21 @@ export class RegistrationServiceProxy {
         } else if (status === 400) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result400: any = null;
-            result400 = _responseText === "" ? null : <string>JSON.parse(_responseText, this.jsonParseReviver);
+            result400 = _responseText === "" ? null : <ApiError>JSON.parse(_responseText, this.jsonParseReviver);
             return throwException("A server side error occurred.", status, _responseText, _headers, result400);
             }));
-        } else if (status === 204) {
+        } else if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
-            return _observableOf<void>(<any>null);
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <Patient>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<void>(<any>null);
+        return _observableOf<Patient>(<any>null);
     }
 }
 

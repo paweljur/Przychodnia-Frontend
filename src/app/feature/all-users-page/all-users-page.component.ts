@@ -40,14 +40,14 @@ export class AllUsersPageComponent implements OnInit {
     },
   ];
 
-  constructor(private _userService: UserServiceProxy, public dialog: MatDialog) {}
+  constructor(private _userService: UserServiceProxy, public _dialog: MatDialog) {}
 
   ngOnInit(): void {
     this._userService.getAllUsers().subscribe((users: UserInfo[]) => (this.users = users));
   }
 
   openNewUserDialog(): void {
-    this.dialog
+    this._dialog
       .open(NewUserDialogComponent)
       .afterClosed()
       .subscribe((newUser: UserInfo) => this.users.push(newUser));

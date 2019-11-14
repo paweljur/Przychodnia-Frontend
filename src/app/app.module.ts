@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +25,8 @@ import { NewUserDialogComponent } from './feature/all-users-page/new-user-dialog
 import { MatDialogModule, MatSelectModule } from '@angular/material';
 import { AllAppointmentsPageComponent } from './feature/all-appointments-page/all-appointments-page.component';
 import { MakeAppointmentPageComponent } from './feature/make-appointment-page/make-appointment-page.component';
+import { RegisterPatientDialogComponent } from './feature/make-appointment-page/register-patient-dialog/register-patient-dialog.component';
+import { MakeAppointmentDialogComponent } from './feature/make-appointment-page/make-appointment-dialog/make-appointment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,11 +38,14 @@ import { MakeAppointmentPageComponent } from './feature/make-appointment-page/ma
     NewUserDialogComponent,
     AllAppointmentsPageComponent,
     MakeAppointmentPageComponent,
+    RegisterPatientDialogComponent,
+    MakeAppointmentDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
@@ -58,7 +63,7 @@ import { MakeAppointmentPageComponent } from './feature/make-appointment-page/ma
     MatListModule,
     SharedModule,
   ],
-  entryComponents: [NewUserDialogComponent],
+  entryComponents: [NewUserDialogComponent, RegisterPatientDialogComponent, MakeAppointmentDialogComponent],
   providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } }],
   bootstrap: [AppComponent],
 })

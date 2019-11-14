@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistrationServiceProxy, Patient } from 'src/core/api/service-proxies';
 import { ColumnInfoItem } from 'src/app/shared/generic-table/models/ColumnInfoItem';
+import { MatDialog } from '@angular/material';
+import { RegisterPatientDialogComponent } from './register-patient-dialog/register-patient-dialog.component';
+import { MakeAppointmentDialogComponent } from './make-appointment-dialog/make-appointment-dialog.component';
 
 @Component({
   selector: 'app-make-appointment-page',
@@ -8,7 +11,15 @@ import { ColumnInfoItem } from 'src/app/shared/generic-table/models/ColumnInfoIt
   styleUrls: ['./make-appointment-page.component.scss'],
 })
 export class MakeAppointmentPageComponent implements OnInit {
-  patients: Patient[] = [];
+  private _patients: Patient[] = [];
+  private _filteredPatients: Patient[] = [];
+  get patients(): Patient[] {
+    return this._filteredPatients;
+  }
+
+  filterName: string = '';
+  filterSurname: string = '';
+  selectedPatient: Patient;
 
   columnsInfo: ColumnInfoItem[] = [
     {
@@ -33,9 +44,40 @@ export class MakeAppointmentPageComponent implements OnInit {
     },
   ];
 
-  constructor(private _registrationService: RegistrationServiceProxy) {}
+  constructor(private _registrationService: RegistrationServiceProxy, private _dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this._registrationService.getAllPatients().subscribe((patients: Patient[]) => (this.patients = patients));
+    this._registrationService.getAllPatients().subscribe((patients: Patient[]) => {
+      this._patients = patients;
+      this._filteredPatients = patients;
+    });
+  }
+
+  filterPatients(): void {
+    this._filteredPatients = this._patients.filter(
+      (patient: Patient) =>
+        patient.name &&
+        patient.name.toLowerCase().includes(this.filterName.toLowerCase().trim()) &&
+        patient.surname &&
+        patient.surname.toLowerCase().includes(this.filterSurname.toLowerCase().trim())
+    );
+  }
+
+  openPatientDialog(): void {
+    this._dialog
+      .open(RegisterPatientDialogComponent)
+      .afterClosed()
+      .subscribe((newUser: Patient) => {
+        this._patients.push(newUser);
+        this.filterPatients();
+      });
+  }
+
+  openAppointmentDialog(): void {
+    this._dialog.open(MakeAppointmentDialogComponent);
+  }
+
+  patientSelected(patient: Patient): void {
+    this.selectedPatient = patient;
   }
 }
