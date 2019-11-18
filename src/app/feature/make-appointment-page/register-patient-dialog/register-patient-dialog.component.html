@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Add patient</h1>
+<h1 mat-dialog-title>Register patient</h1>
 <form [formGroup]="newPatientForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <input matInput formControlName="name" placeholder="Name" />
@@ -16,7 +16,7 @@
   </mat-form-field>
 
   <button mat-flat-button color="primary" type="submit" [disabled]="!newPatientForm.valid">
-    Add
+    Submit
   </button>
 
   <button mat-button (click)="abort()" type="button">Abort</button>

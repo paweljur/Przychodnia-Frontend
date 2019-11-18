@@ -22,7 +22,7 @@ import { CurrentUserComponent } from './main/components/current-user/current-use
 import { SharedModule } from './shared/shared.module';
 import { AllUsersPageComponent } from './feature/all-users-page/all-users-page.component';
 import { NewUserDialogComponent } from './feature/all-users-page/new-user-dialog/new-user-dialog.component';
-import { MatDialogModule, MatSelectModule } from '@angular/material';
+import { MatDialogModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { AllAppointmentsPageComponent } from './feature/all-appointments-page/all-appointments-page.component';
 import { MakeAppointmentPageComponent } from './feature/make-appointment-page/make-appointment-page.component';
 import { RegisterPatientDialogComponent } from './feature/make-appointment-page/register-patient-dialog/register-patient-dialog.component';
@@ -48,9 +48,11 @@ import { MakeAppointmentDialogComponent } from './feature/make-appointment-page/
     FormsModule,
     MatButtonModule,
     MatCardModule,
+    MatDatepickerModule,
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatNativeDateModule,
     MatSelectModule,
     MatSnackBarModule,
     ReactiveFormsModule,

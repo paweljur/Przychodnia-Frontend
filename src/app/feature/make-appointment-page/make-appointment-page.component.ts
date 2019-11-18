@@ -74,7 +74,7 @@ export class MakeAppointmentPageComponent implements OnInit {
   }
 
   openAppointmentDialog(): void {
-    this._dialog.open(MakeAppointmentDialogComponent);
+    this._dialog.open(MakeAppointmentDialogComponent, { data: this.selectedPatient });
   }
 
   patientSelected(patient: Patient): void {

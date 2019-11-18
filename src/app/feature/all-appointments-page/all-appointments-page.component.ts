@@ -12,16 +12,6 @@ export class AllAppointmentsPageComponent implements OnInit {
 
   columnsInfo: ColumnInfoItem[] = [
     {
-      columnDef: 'id',
-      header: 'Id',
-      cell: (element: Appointment): string => `${element.appointmentDate}`,
-    },
-    {
-      columnDef: 'doctor',
-      header: 'Doctor',
-      cell: (element: Appointment): string => `${element.doctor.name || ''} ${element.doctor.surname || ''}`,
-    },
-    {
       columnDef: 'patient',
       header: 'Patient',
       cell: (element: Appointment): string => `${element.patient.name || ''} ${element.patient.surname || ''}`,
@@ -30,6 +20,21 @@ export class AllAppointmentsPageComponent implements OnInit {
       columnDef: 'pesel',
       header: 'PESEL',
       cell: (element: Appointment): string => `${element.patient.identityNumber}`,
+    },
+    {
+      columnDef: 'doctor',
+      header: 'Doctor',
+      cell: (element: Appointment): string => `${element.doctor.name || ''} ${element.doctor.surname || ''}`,
+    },
+    {
+      columnDef: 'date',
+      header: 'Date',
+      cell: (element: Appointment): string => `${new Date(element.appointmentDate).toLocaleDateString()}`,
+    },
+    {
+      columnDef: 'time',
+      header: 'Time',
+      cell: (element: Appointment): string => `${new Date(element.appointmentDate).toLocaleTimeString()}`,
     },
   ];
 
