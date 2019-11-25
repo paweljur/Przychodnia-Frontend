@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Register patient</h1>
+<form [formGroup]="newPatientForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput formControlName="name" placeholder="Name" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="surname" placeholder="Surname" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="identityNumber" placeholder="PESEL" type="number" required />
+    <mat-error *ngIf="hasError('identityNumber', 'min') || hasError('identityNumber', 'max')">
+      Required 11 digits
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" type="submit" [disabled]="!newPatientForm.valid">
+    Submit
+  </button>
+
+  <button mat-button (click)="abort()" type="button">Abort</button>
+</form>

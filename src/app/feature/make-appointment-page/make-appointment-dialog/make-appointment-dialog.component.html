@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>Make appointment</h1>
+<form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Doctors</mat-label>
+    <mat-select formControlName="doctor">
+      <mat-option *ngFor="let doctor of doctors" [value]="doctor"> {{ doctor.name }} {{ doctor.surname }} </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="date" [matDatepicker]="picker" placeholder="Date" required />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div class="time">
+    <mat-form-field class="hour">
+      <mat-label>Hour</mat-label>
+
+      <mat-select formControlName="hour" required>
+        <mat-option *ngFor="let hour of hours" [value]="hour">
+          {{ hour }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="minutes">
+      <mat-label>Minutes</mat-label>
+
+      <mat-select formControlName="minutes" required>
+        <mat-option *ngFor="let minute of minutes" [value]="minute">
+          {{ minute }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <button mat-flat-button color="primary" type="submit" [disabled]="!appointmentForm.valid">
+    Submit
+  </button>
+
+  <button mat-button (click)="abort()" type="button">Abort</button>
+</form>

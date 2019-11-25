@@ -8,11 +8,17 @@
     [opened]="(isHandset$ | async) === false"
   >
     <app-current-user [user]="currentUser"></app-current-user>
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-divider></mat-divider>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item routerLink="/users" routerLinkActive="active">
+        <span class="link-text">All users</span>
+      </a>
+      <a mat-list-item routerLink="/appointments" routerLinkActive="active">
+        <span class="link-text">All appointments</span>
+      </a>
+      <a mat-list-item routerLink="/make-appointment" routerLinkActive="active">
+        <span class="link-text">Make appointment</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -22,6 +28,8 @@
       </button>
       <span>Przychodnia-Frontend</span>
     </mat-toolbar>
-    <!-- Add Content Here -->
+    <div class="router-wrapper">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
