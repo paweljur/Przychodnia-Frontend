@@ -27,6 +27,7 @@ import { AllAppointmentsPageComponent } from './feature/all-appointments-page/al
 import { MakeAppointmentPageComponent } from './feature/make-appointment-page/make-appointment-page.component';
 import { RegisterPatientDialogComponent } from './feature/make-appointment-page/register-patient-dialog/register-patient-dialog.component';
 import { MakeAppointmentDialogComponent } from './feature/make-appointment-page/make-appointment-dialog/make-appointment-dialog.component';
+import { MyAppointmentsComponent } from './feature/my-appointments/my-appointments.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MakeAppointmentDialogComponent } from './feature/make-appointment-page/
     MakeAppointmentPageComponent,
     RegisterPatientDialogComponent,
     MakeAppointmentDialogComponent,
+    MyAppointmentsComponent,
   ],
   imports: [
     BrowserModule,
