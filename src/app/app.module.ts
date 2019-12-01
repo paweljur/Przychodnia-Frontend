@@ -22,12 +22,13 @@ import { CurrentUserComponent } from './main/components/current-user/current-use
 import { SharedModule } from './shared/shared.module';
 import { AllUsersPageComponent } from './feature/all-users-page/all-users-page.component';
 import { NewUserDialogComponent } from './feature/all-users-page/new-user-dialog/new-user-dialog.component';
-import { MatDialogModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatDialogModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatTabsModule } from '@angular/material';
 import { AllAppointmentsPageComponent } from './feature/all-appointments-page/all-appointments-page.component';
 import { MakeAppointmentPageComponent } from './feature/make-appointment-page/make-appointment-page.component';
 import { RegisterPatientDialogComponent } from './feature/make-appointment-page/register-patient-dialog/register-patient-dialog.component';
 import { MakeAppointmentDialogComponent } from './feature/make-appointment-page/make-appointment-dialog/make-appointment-dialog.component';
 import { MyAppointmentsComponent } from './feature/my-appointments-page/my-appointments-page.component';
+import { VisitViewComponent } from './feature/my-appointments-page/visit-view/visit-view.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MyAppointmentsComponent } from './feature/my-appointments-page/my-appoi
     RegisterPatientDialogComponent,
     MakeAppointmentDialogComponent,
     MyAppointmentsComponent,
+    VisitViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +67,7 @@ import { MyAppointmentsComponent } from './feature/my-appointments-page/my-appoi
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatTabsModule,
     SharedModule,
   ],
   entryComponents: [NewUserDialogComponent, RegisterPatientDialogComponent, MakeAppointmentDialogComponent],

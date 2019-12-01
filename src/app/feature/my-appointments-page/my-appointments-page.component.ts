@@ -36,6 +36,7 @@ export class MyAppointmentsComponent implements OnInit {
   ];
 
   options: string[] = ['Start', 'Cancel'];
+  selectedAppointment: Appointment;
 
   constructor(private _doctorService: DoctorServiceProxy) {}
 
@@ -50,7 +51,7 @@ export class MyAppointmentsComponent implements OnInit {
         break;
 
       case 'start':
-        //this.startVisit(option.row);
+        this.startVisit(option.row);
         break;
 
       default:
@@ -63,5 +64,14 @@ export class MyAppointmentsComponent implements OnInit {
       .cancelAppointment(appointment.id)
       .pipe(switchMap(() => this._doctorService.getAllAppointments()))
       .subscribe((appointments: Appointment[]) => (this.appointments = appointments));
+  }
+
+  private startVisit(appointment: Appointment): void {
+    this.selectedAppointment = appointment;
+  }
+
+  finished(): void {
+    this._doctorService.getAllAppointments().subscribe((appointments: Appointment[]) => (this.appointments = appointments));
+    this.selectedAppointment = undefined;
   }
 }

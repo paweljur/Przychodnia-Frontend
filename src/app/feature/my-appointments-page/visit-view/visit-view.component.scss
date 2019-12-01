@@ -1,0 +1,25 @@
+.mat-tab-group {
+  padding-bottom: 50px;
+
+  .current-visit {
+    max-width: 700px;
+    margin: auto;
+
+    .diagnosis,
+    .description {
+      width: 100%;
+
+      &-textarea {
+        height: 20vh;
+      }
+    }
+  }
+
+  .form-buttons {
+    float: right;
+  }
+
+  section {
+    padding: 20px;
+  }
+}
