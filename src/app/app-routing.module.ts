@@ -7,6 +7,7 @@ import { AllUsersPageComponent } from './feature/all-users-page/all-users-page.c
 import { AllAppointmentsPageComponent } from './feature/all-appointments-page/all-appointments-page.component';
 import { MakeAppointmentPageComponent } from './feature/make-appointment-page/make-appointment-page.component';
 import { MyAppointmentsComponent } from './feature/my-appointments-page/my-appointments-page.component';
+import { PastVisitsComponent } from './feature/past-visits/past-visits.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: 'my-appointments',
         component: MyAppointmentsComponent,
+      },
+      {
+        path: 'past-visits',
+        component: PastVisitsComponent,
       },
     ],
   },

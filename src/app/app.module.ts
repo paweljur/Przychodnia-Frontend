@@ -29,6 +29,7 @@ import { RegisterPatientDialogComponent } from './feature/make-appointment-page/
 import { MakeAppointmentDialogComponent } from './feature/make-appointment-page/make-appointment-dialog/make-appointment-dialog.component';
 import { MyAppointmentsComponent } from './feature/my-appointments-page/my-appointments-page.component';
 import { VisitViewComponent } from './feature/my-appointments-page/visit-view/visit-view.component';
+import { PastVisitsComponent } from './feature/past-visits/past-visits.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { VisitViewComponent } from './feature/my-appointments-page/visit-view/vi
     MakeAppointmentDialogComponent,
     MyAppointmentsComponent,
     VisitViewComponent,
+    PastVisitsComponent,
   ],
   imports: [
     BrowserModule,
