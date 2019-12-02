@@ -22,5 +22,6 @@
   [data]="patients"
   [columnsInfo]="columnsInfo"
   [clickableRows]="true"
-  (rowSelected)="patientSelected($event)"
+  [selectedRow]="selectedPatient"
+  (selectedRowChange)="patientSelected($event)"
 ></app-generic-table>
