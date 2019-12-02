@@ -12,28 +12,28 @@ export class GenericTableComponent {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  private _data: object[] = [];
+  private _data: any[] = [];
   private _sortType: Sort;
 
   @Input()
-  set data(data: object[]) {
+  set data(data: any[]) {
     this._data = data;
   }
-  get data(): object[] {
+  get data(): any[] {
     return this._data;
   }
   @Input() columnsInfo: ColumnInfoItem[] = [];
   @Input() rowOptions: string[] = [];
   @Input() clickableRows: boolean = false;
+  @Input() selectedRow: any;
 
-  @Output() rowSelected: EventEmitter<object> = new EventEmitter();
+  @Output() selectedRowChange: EventEmitter<any> = new EventEmitter();
   @Output() optionSelected: EventEmitter<SelectedOption> = new EventEmitter();
 
   pageSize: number = 10;
   pageIndex: number = 0;
-  currentActiveRow: object = null;
 
-  get displayData(): object[] {
+  get displayData(): any[] {
     const dataToDisplay: any[] = this.sortData(this._data, this._sortType);
     return this.paginate(dataToDisplay, this.pageIndex, this.pageSize);
   }
@@ -53,16 +53,16 @@ export class GenericTableComponent {
     this._sortType = sort;
   }
 
-  rowClick(event: MouseEvent, row: object, i: any): void {
-    if (row === this.currentActiveRow) {
-      this.currentActiveRow = null;
+  rowClick(event: MouseEvent, row: any, i: any): void {
+    if (row === this.selectedRow) {
+      this.selectedRow = undefined;
     } else {
-      this.currentActiveRow = row;
+      this.selectedRow = row;
     }
-    this.rowSelected.emit(this.currentActiveRow);
+    this.selectedRowChange.emit(this.selectedRow);
   }
 
-  optionClick(option: string, row: object): void {
+  optionClick(option: string, row: any): void {
     this.optionSelected.emit({ optionName: option.toLowerCase(), row });
   }
 

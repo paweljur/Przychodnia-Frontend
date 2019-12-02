@@ -1,0 +1,10 @@
+<h2 class="mat-title">Patient</h2>
+<h4 class="mat-subheading-1">Name and surname: {{ visit.appointment.patient.name }} {{ visit.appointment.patient.surname }}</h4>
+<h4 class="mat-subheading-1">Pesel: {{ visit.appointment.patient.identityNumber }}</h4>
+<mat-divider></mat-divider>
+<h2 class="mat-title">Visit</h2>
+<h4 class="mat-subheading-1">Date and time: {{ visit.appointment.appointmentDate | date: 'short' }}</h4>
+<h4 class="mat-subheading-1">Description:</h4>
+<p class="mat-body">{{ visit.description }}</p>
+<h4 class="mat-subheading-1">Diagnosis:</h4>
+<p class="mat-body">{{ visit.diagnosis }}</p>

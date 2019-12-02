@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DoctorServiceProxy, Visit } from 'src/core/api/service-proxies';
 import { ColumnInfoItem } from 'src/app/shared/generic-table/models/ColumnInfoItem';
+import { MatDialog } from '@angular/material';
+import { VisitDetailsDialogComponent } from './visit-details-dialog/visit-details-dialog.component';
 
 @Component({
   selector: 'app-past-visits',
@@ -9,6 +11,7 @@ import { ColumnInfoItem } from 'src/app/shared/generic-table/models/ColumnInfoIt
 })
 export class PastVisitsComponent implements OnInit {
   visits: Visit[] = [];
+  selectedVisit: Visit;
 
   columnsInfo: ColumnInfoItem[] = [
     {
@@ -33,9 +36,20 @@ export class PastVisitsComponent implements OnInit {
     },
   ];
 
-  constructor(private _doctorService: DoctorServiceProxy) {}
+  constructor(private _doctorService: DoctorServiceProxy, private _dialog: MatDialog) {}
 
   ngOnInit(): void {
     this._doctorService.getPastVisits().subscribe((visits: Visit[]) => (this.visits = visits));
+  }
+
+  showDetails(visit: Visit): void {
+    this.selectedVisit = visit;
+    this._dialog
+      .open(VisitDetailsDialogComponent, { data: visit })
+      .afterClosed()
+      .subscribe(() => {
+        console.log('reseting');
+        this.selectedVisit = undefined;
+      });
   }
 }

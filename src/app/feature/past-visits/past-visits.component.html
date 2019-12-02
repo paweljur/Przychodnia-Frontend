@@ -1,1 +1,7 @@
-<app-generic-table [data]="visits" [columnsInfo]="columnsInfo"></app-generic-table>
+<app-generic-table
+  [data]="visits"
+  [columnsInfo]="columnsInfo"
+  clickableRows="true"
+  [selectedRow]="selectedVisit"
+  (selectedRowChange)="showDetails($event)"
+></app-generic-table>
