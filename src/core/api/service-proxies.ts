@@ -15,6 +15,69 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 @Injectable()
+export class LaboratoryServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "https://localhost:5001";
+    }
+
+    getAllLabTestOrders(): Observable<LabTestOrder[]> {
+        let url_ = this.baseUrl + "/api/laboratory/GetAllLabTestOrders";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllLabTestOrders(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllLabTestOrders(<any>response_);
+                } catch (e) {
+                    return <Observable<LabTestOrder[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<LabTestOrder[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetAllLabTestOrders(response: HttpResponseBase): Observable<LabTestOrder[]> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server side error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <LabTestOrder[]>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<LabTestOrder[]>(<any>null);
+    }
+}
+
+@Injectable()
 export class UserServiceProxy {
     private http: HttpClient;
     private baseUrl: string;
@@ -248,12 +311,6 @@ export class RegistrationServiceProxy {
             let result401: any = null;
             result401 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
             return throwException("A server side error occurred.", status, _responseText, _headers, result401);
-            }));
-        } else if (status === 400) {
-            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
-            let result400: any = null;
-            result400 = _responseText === "" ? null : <string>JSON.parse(_responseText, this.jsonParseReviver);
-            return throwException("A server side error occurred.", status, _responseText, _headers, result400);
             }));
         } else if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
@@ -725,6 +782,30 @@ export class DoctorServiceProxy {
     }
 }
 
+export interface LabTestOrder {
+    id: number;
+    name: string;
+    doctorsNote?: string | undefined;
+    patient: Patient;
+    doctor: Doctor;
+}
+
+export interface ValueObject {
+}
+
+export interface Patient extends ValueObject {
+    id: number;
+    name?: string | undefined;
+    surname?: string | undefined;
+    identityNumber: string;
+}
+
+export interface Doctor extends ValueObject {
+    id: number;
+    name?: string | undefined;
+    surname?: string | undefined;
+}
+
 export interface ProblemDetails {
     type?: string | undefined;
     title?: string | undefined;
@@ -732,9 +813,6 @@ export interface ProblemDetails {
     detail?: string | undefined;
     instance?: string | undefined;
     extensions?: { [key: string]: any; } | undefined;
-}
-
-export interface ValueObject {
 }
 
 export interface UserInfo extends ValueObject {
@@ -775,19 +853,6 @@ export interface Appointment extends ValueObject {
     patient: Patient;
     doctor: Doctor;
     appointmentDate: Date;
-}
-
-export interface Patient extends ValueObject {
-    id: number;
-    name?: string | undefined;
-    surname?: string | undefined;
-    identityNumber: string;
-}
-
-export interface Doctor extends ValueObject {
-    id: number;
-    name?: string | undefined;
-    surname?: string | undefined;
 }
 
 export interface NewAppointmentDto extends ValueObject {

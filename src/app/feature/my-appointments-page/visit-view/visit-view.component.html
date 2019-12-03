@@ -12,13 +12,21 @@
           <h1 class="mat-headline">Visit procedure</h1>
           <mat-form-field class="description" appearance="outline">
             <mat-label>Description</mat-label>
-            <textarea matInput formControlName="description" class="description-textarea" type="text"></textarea>
+            <textarea
+              matInput
+              formControlName="description"
+              class="description-textarea"
+              type="text"
+            ></textarea>
           </mat-form-field>
         </section>
         <section>
           <h1 class="mat-headline">Lab test orders</h1>
           <mat-accordion formArrayName="labTestOrders">
-            <mat-expansion-panel *ngFor="let labTestOrder of labTestOrders.controls; index as i" [formGroupName]="i">
+            <mat-expansion-panel
+              *ngFor="let labTestOrder of labTestOrders.controls; index as i"
+              [formGroupName]="i"
+            >
               <mat-expansion-panel-header>
                 {{ labTestOrder.value.name ? labTestOrder.value.name : 'New lab test' }}
               </mat-expansion-panel-header>

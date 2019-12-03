@@ -16,7 +16,8 @@ export class MyAppointmentsComponent implements OnInit {
     {
       columnDef: 'patient',
       header: 'Patient',
-      cell: (element: Appointment): string => `${element.patient.name || ''} ${element.patient.surname || ''}`,
+      cell: (element: Appointment): string =>
+        `${element.patient.name || ''} ${element.patient.surname || ''}`,
     },
     {
       columnDef: 'pesel',
@@ -41,16 +42,18 @@ export class MyAppointmentsComponent implements OnInit {
   constructor(private _doctorService: DoctorServiceProxy) {}
 
   ngOnInit(): void {
-    this._doctorService.getAllAppointments().subscribe((appointments: Appointment[]) => (this.appointments = appointments));
+    this._doctorService
+      .getAllAppointments()
+      .subscribe((appointments: Appointment[]) => (this.appointments = appointments));
   }
 
   optionSelected(option: SelectedOption): void {
     switch (option.optionName) {
-      case 'cancel':
+      case 'Cancel':
         this.cancelAppointment(option.row);
         break;
 
-      case 'start':
+      case 'Start':
         this.startVisit(option.row);
         break;
 
@@ -71,7 +74,9 @@ export class MyAppointmentsComponent implements OnInit {
   }
 
   finished(): void {
-    this._doctorService.getAllAppointments().subscribe((appointments: Appointment[]) => (this.appointments = appointments));
+    this._doctorService
+      .getAllAppointments()
+      .subscribe((appointments: Appointment[]) => (this.appointments = appointments));
     this.selectedAppointment = undefined;
   }
 }

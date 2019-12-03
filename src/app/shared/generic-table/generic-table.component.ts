@@ -63,14 +63,16 @@ export class GenericTableComponent {
   }
 
   optionClick(option: string, row: any): void {
-    this.optionSelected.emit({ optionName: option.toLowerCase(), row });
+    this.optionSelected.emit({ optionName: option, row });
   }
 
   private sortData(data: any[], sort: Sort): any[] {
     if (sort != null && sort.active && sort.direction !== '') {
       data.sort((a: any, b: any) => {
         const isAsc: boolean = sort.direction === 'asc';
-        const column: ColumnInfoItem = this.columnsInfo.find((c: ColumnInfoItem) => c.columnDef === sort.active);
+        const column: ColumnInfoItem = this.columnsInfo.find(
+          (c: ColumnInfoItem) => c.columnDef === sort.active
+        );
         if (column.cell(a) == null && column.cell(b) == null) {
           return -1;
         }

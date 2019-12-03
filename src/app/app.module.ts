@@ -38,6 +38,8 @@ import { MyAppointmentsComponent } from './feature/my-appointments-page/my-appoi
 import { VisitViewComponent } from './feature/my-appointments-page/visit-view/visit-view.component';
 import { PastVisitsComponent } from './feature/past-visits/past-visits.component';
 import { VisitDetailsDialogComponent } from './feature/past-visits/visit-details-dialog/visit-details-dialog.component';
+import { AllTestOrdersPageComponent } from './feature/all-test-orders-page/all-test-orders-page.component';
+import { TestResultPageComponent } from './feature/all-test-orders-page/test-result-page/test-result-page.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { VisitDetailsDialogComponent } from './feature/past-visits/visit-details
     VisitViewComponent,
     PastVisitsComponent,
     VisitDetailsDialogComponent,
+    AllTestOrdersPageComponent,
+    TestResultPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +86,12 @@ import { VisitDetailsDialogComponent } from './feature/past-visits/visit-details
     MatExpansionModule,
     SharedModule,
   ],
-  entryComponents: [NewUserDialogComponent, RegisterPatientDialogComponent, MakeAppointmentDialogComponent, VisitDetailsDialogComponent],
+  entryComponents: [
+    NewUserDialogComponent,
+    RegisterPatientDialogComponent,
+    MakeAppointmentDialogComponent,
+    VisitDetailsDialogComponent,
+  ],
   providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } }],
   bootstrap: [AppComponent],
 })

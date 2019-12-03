@@ -17,7 +17,8 @@ export class PastVisitsComponent implements OnInit {
     {
       columnDef: 'patient',
       header: 'Patient',
-      cell: (element: Visit): string => `${element.appointment.patient.name || ''} ${element.appointment.patient.surname || ''}`,
+      cell: (element: Visit): string =>
+        `${element.appointment.patient.name || ''} ${element.appointment.patient.surname || ''}`,
     },
     {
       columnDef: 'pesel',
@@ -27,12 +28,14 @@ export class PastVisitsComponent implements OnInit {
     {
       columnDef: 'date',
       header: 'Date',
-      cell: (element: Visit): string => `${new Date(element.appointment.appointmentDate).toLocaleDateString()}`,
+      cell: (element: Visit): string =>
+        `${new Date(element.appointment.appointmentDate).toLocaleDateString()}`,
     },
     {
       columnDef: 'time',
       header: 'Time',
-      cell: (element: Visit): string => `${new Date(element.appointment.appointmentDate).toLocaleTimeString()}`,
+      cell: (element: Visit): string =>
+        `${new Date(element.appointment.appointmentDate).toLocaleTimeString()}`,
     },
   ];
 
@@ -47,9 +50,6 @@ export class PastVisitsComponent implements OnInit {
     this._dialog
       .open(VisitDetailsDialogComponent, { data: visit })
       .afterClosed()
-      .subscribe(() => {
-        console.log('reseting');
-        this.selectedVisit = undefined;
-      });
+      .subscribe(() => (this.selectedVisit = undefined));
   }
 }
