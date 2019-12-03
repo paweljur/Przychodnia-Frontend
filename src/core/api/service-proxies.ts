@@ -806,6 +806,12 @@ export interface VisitDetailsDto {
     appointmentId: number;
     description?: string | undefined;
     diagnosis?: string | undefined;
+    labTestOrders: LabTestOrderDto[];
+}
+
+export interface LabTestOrderDto {
+    name?: string | undefined;
+    doctorsNote?: string | undefined;
 }
 
 export interface Visit {

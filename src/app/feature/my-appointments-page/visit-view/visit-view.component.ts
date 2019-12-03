@@ -2,6 +2,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Appointment, DoctorServiceProxy } from 'src/core/api/service-proxies';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 
+interface VisitForm {
+  description: string;
+  diagnosis: string;
+  labTestOrders: {
+    name: string;
+    doctorsNote: string;
+  }[];
+}
 @Component({
   selector: 'app-visit-view',
   templateUrl: './visit-view.component.html',
@@ -20,21 +28,22 @@ export class VisitViewComponent implements OnInit {
   ngOnInit(): void {
     this.visitForm = this._fb.group({
       description: [null],
-      labTests: this._fb.array([]),
+      labTestOrders: this._fb.array([]),
       diagnosis: [null],
     });
   }
 
-  get labTests(): FormArray {
-    return this.visitForm.get('labTests') as FormArray;
+  get labTestOrders(): FormArray {
+    return this.visitForm.get('labTestOrders') as FormArray;
   }
 
-  onSubmit(formValue: any): void {
+  onSubmit(formValue: VisitForm): void {
     this._doctorService
       .finishAppointment({
         appointmentId: this.appointment.id,
         description: formValue.description,
         diagnosis: formValue.diagnosis,
+        labTestOrders: formValue.labTestOrders,
       })
       .subscribe(() => this.finished.emit(null));
   }
@@ -44,10 +53,10 @@ export class VisitViewComponent implements OnInit {
   }
 
   addTest(): void {
-    this.labTests.push(
+    this.labTestOrders.push(
       this._fb.group({
-        name: [null, Validators.required],
-        note: ['', Validators.required],
+        name: [null],
+        doctorsNote: [''],
       })
     );
   }

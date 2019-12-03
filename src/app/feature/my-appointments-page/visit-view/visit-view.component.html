@@ -16,11 +16,11 @@
           </mat-form-field>
         </section>
         <section>
-          <h1 class="mat-headline">Lab tests</h1>
-          <mat-accordion formArrayName="labTests">
-            <mat-expansion-panel *ngFor="let labTest of labTests.controls; index as i" [formGroupName]="i">
+          <h1 class="mat-headline">Lab test orders</h1>
+          <mat-accordion formArrayName="labTestOrders">
+            <mat-expansion-panel *ngFor="let labTestOrder of labTestOrders.controls; index as i" [formGroupName]="i">
               <mat-expansion-panel-header>
-                {{ labTest.value.name ? labTest.value.name : 'New lab test' }}
+                {{ labTestOrder.value.name ? labTestOrder.value.name : 'New lab test' }}
               </mat-expansion-panel-header>
               <mat-form-field class="name" appearance="outline">
                 <mat-label>Name</mat-label>
@@ -28,7 +28,7 @@
               </mat-form-field>
               <mat-form-field class="note" appearance="outline">
                 <mat-label>Note</mat-label>
-                <textarea matInput class="note-textarea" formControlName="note" type="text"></textarea>
+                <textarea matInput class="note-textarea" formControlName="doctorsNote" type="text"></textarea>
               </mat-form-field>
             </mat-expansion-panel>
           </mat-accordion>
