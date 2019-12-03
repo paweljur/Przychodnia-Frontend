@@ -1,0 +1,60 @@
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Current Visit">
+    <mat-card class="current-visit">
+      <section class="patient-info">
+        <h1 class="mat-headline">Patient</h1>
+        <h3 class="mat-subheading-2">Name: {{ appointment.patient.name }}</h3>
+        <h3 class="mat-subheading-2">Surname: {{ appointment.patient.surname }}</h3>
+        <h3 class="mat-subheading-2">PESEL: {{ appointment.patient.identityNumber }}</h3>
+      </section>
+      <form [formGroup]="visitForm" (ngSubmit)="onSubmit(visitForm.value)">
+        <section>
+          <h1 class="mat-headline">Visit procedure</h1>
+          <mat-form-field class="description" appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" class="description-textarea" type="text"></textarea>
+          </mat-form-field>
+        </section>
+        <section>
+          <h1 class="mat-headline">Lab test orders</h1>
+          <mat-accordion formArrayName="labTestOrders">
+            <mat-expansion-panel *ngFor="let labTestOrder of labTestOrders.controls; index as i" [formGroupName]="i">
+              <mat-expansion-panel-header>
+                {{ labTestOrder.value.name ? labTestOrder.value.name : 'New lab test' }}
+              </mat-expansion-panel-header>
+              <mat-form-field class="name" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput class="name-input" formControlName="name" type="text" />
+              </mat-form-field>
+              <mat-form-field class="note" appearance="outline">
+                <mat-label>Note</mat-label>
+                <textarea matInput class="note-textarea" formControlName="doctorsNote" type="text"></textarea>
+              </mat-form-field>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <button mat-flat-button color="primary" class="new-button" (click)="addTest()" type="button">
+            Add
+          </button>
+        </section>
+        <section>
+          <h1 class="mat-headline">Diagnosis</h1>
+          <mat-form-field class="diagnosis" appearance="outline">
+            <mat-label>Diagnosis</mat-label>
+            <textarea matInput formControlName="diagnosis" class="diagnosis-textarea" type="text"></textarea>
+          </mat-form-field>
+        </section>
+        <mat-card-actions align="right">
+          <button mat-button type="button" (click)="abort()">
+            Abort
+          </button>
+          <button mat-flat-button color="primary" type="submit" [disabled]="!visitForm.valid">
+            Finish
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="Patients History">
+    <div>historia pacjenta</div>
+  </mat-tab>
+</mat-tab-group>

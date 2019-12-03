@@ -38,7 +38,7 @@
       mat-row
       *matRowDef="let row; columns: columnDefs; let i = index"
       (click)="rowClick($event, row, i)"
-      [ngClass]="{ clickable: clickableRows, active: currentActiveRow === row }"
+      [ngClass]="{ clickable: clickableRows, active: selectedRow === row }"
     ></tr>
   </table>
 </div>

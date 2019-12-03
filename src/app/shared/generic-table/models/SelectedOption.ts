@@ -1,4 +1,4 @@
 export interface SelectedOption {
   optionName: string;
-  row: object;
+  row: any;
 }

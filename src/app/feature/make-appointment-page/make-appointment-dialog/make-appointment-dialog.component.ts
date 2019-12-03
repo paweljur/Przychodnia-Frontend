@@ -61,7 +61,10 @@ export class MakeAppointmentDialogComponent implements OnInit {
     };
 
     this._registrationService.makeAppointment(appointment).subscribe(
-      () => this.showPositiveSnackBar(),
+      () => {
+        this.showPositiveSnackBar();
+        this._dialogRef.close();
+      },
       (error: ApiError) => this.showNegativeSnackBar(error.message)
     );
   }

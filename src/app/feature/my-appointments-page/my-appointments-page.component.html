@@ -1,0 +1,9 @@
+<app-generic-table
+  *ngIf="!!!selectedAppointment"
+  [rowOptions]="options"
+  (optionSelected)="optionSelected($event)"
+  [data]="appointments"
+  [columnsInfo]="columnsInfo"
+></app-generic-table>
+
+<app-visit-view *ngIf="!!selectedAppointment" [appointment]="selectedAppointment" (finished)="finished()"></app-visit-view>
