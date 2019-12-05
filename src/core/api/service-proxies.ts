@@ -971,7 +971,16 @@ export interface Doctor extends ValueObject {
 
 export interface LabTestResult {
     id: number;
-    description?: string | undefined;
+    result?: string | undefined;
+    testName?: string | undefined;
+    patient: Patient;
+    laborant: Laborant;
+}
+
+export interface Laborant {
+    id: number;
+    name?: string | undefined;
+    surname?: string | undefined;
 }
 
 export interface ProblemDetails {

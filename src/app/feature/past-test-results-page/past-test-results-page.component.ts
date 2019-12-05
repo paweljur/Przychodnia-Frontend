@@ -13,14 +13,24 @@ export class PastTestResultsPageComponent implements OnInit {
 
   columnsInfo: ColumnInfoItem[] = [
     {
-      columnDef: 'id',
-      header: 'Id',
-      cell: (element: LabTestResult): string => element.id.toString(),
-    },
-    {
       columnDef: 'patient',
       header: 'Patient',
-      cell: (element: LabTestResult): string => element.description || '',
+      cell: (element: LabTestResult): string => `${element.patient.name} ${element.patient.surname}`,
+    },
+    {
+      columnDef: 'laborant',
+      header: 'Laborant',
+      cell: (element: LabTestResult): string => `${element.laborant.name} ${element.laborant.surname}`,
+    },
+    {
+      columnDef: 'test',
+      header: 'Test',
+      cell: (element: LabTestResult): string => element.testName,
+    },
+    {
+      columnDef: 'result',
+      header: 'Result',
+      cell: (element: LabTestResult): string => element.result,
     },
   ];
 
