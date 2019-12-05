@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Appointment, DoctorServiceProxy } from 'src/core/api/service-proxies';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { Appointment, DoctorServiceProxy, PatientHistory } from 'src/core/api/service-proxies';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 interface VisitForm {
   description: string;
@@ -22,6 +23,7 @@ export class VisitViewComponent implements OnInit {
   finished: EventEmitter<null> = new EventEmitter();
 
   visitForm: FormGroup;
+  patientHistory$: Observable<PatientHistory>;
 
   constructor(private _fb: FormBuilder, private _doctorService: DoctorServiceProxy) {}
 
@@ -31,6 +33,7 @@ export class VisitViewComponent implements OnInit {
       labTestOrders: this._fb.array([]),
       diagnosis: [null],
     });
+    this.patientHistory$ = this._doctorService.getPatientHistory(this.appointment.patient.id);
   }
 
   get labTestOrders(): FormArray {

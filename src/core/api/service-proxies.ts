@@ -943,6 +943,63 @@ export class DoctorServiceProxy {
         }
         return _observableOf<Visit[]>(<any>null);
     }
+
+    getPatientHistory(patientId: number | undefined): Observable<PatientHistory> {
+        let url_ = this.baseUrl + "/api/doctor/getPatientHistory?";
+        if (patientId === null)
+            throw new Error("The parameter 'patientId' cannot be null.");
+        else if (patientId !== undefined)
+            url_ += "patientId=" + encodeURIComponent("" + patientId) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetPatientHistory(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetPatientHistory(<any>response_);
+                } catch (e) {
+                    return <Observable<PatientHistory>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PatientHistory>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetPatientHistory(response: HttpResponseBase): Observable<PatientHistory> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result401: any = null;
+            result401 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result401);
+            }));
+        } else if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <PatientHistory>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PatientHistory>(<any>null);
+    }
 }
 
 export interface LabTestOrder {
@@ -1061,6 +1118,11 @@ export interface Visit {
     appointment: Appointment;
     description?: string | undefined;
     diagnosis?: string | undefined;
+}
+
+export interface PatientHistory {
+    visits: Visit[];
+    testResults: LabTestResult[];
 }
 
 export class ApiException extends Error {
