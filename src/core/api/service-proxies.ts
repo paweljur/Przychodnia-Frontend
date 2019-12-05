@@ -26,7 +26,7 @@ export class LaboratoryServiceProxy {
     }
 
     getAllLabTestOrders(): Observable<LabTestOrder[]> {
-        let url_ = this.baseUrl + "/api/laboratory/GetAllLabTestOrders";
+        let url_ = this.baseUrl + "/api/laboratory/getAllLabTestOrders";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -74,6 +74,118 @@ export class LaboratoryServiceProxy {
             }));
         }
         return _observableOf<LabTestOrder[]>(<any>null);
+    }
+
+    getLabTestOrder(id: number | undefined): Observable<LabTestOrder> {
+        let url_ = this.baseUrl + "/api/laboratory/getLabTestOrder?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetLabTestOrder(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetLabTestOrder(<any>response_);
+                } catch (e) {
+                    return <Observable<LabTestOrder>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<LabTestOrder>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetLabTestOrder(response: HttpResponseBase): Observable<LabTestOrder> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server side error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <LabTestOrder>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<LabTestOrder>(<any>null);
+    }
+
+    finishLabTest(description: string | null | undefined, labTestOrderId: number | undefined): Observable<LabTestResult> {
+        let url_ = this.baseUrl + "/api/laboratory/finishLabTest?";
+        if (description !== undefined)
+            url_ += "Description=" + encodeURIComponent("" + description) + "&"; 
+        if (labTestOrderId === null)
+            throw new Error("The parameter 'labTestOrderId' cannot be null.");
+        else if (labTestOrderId !== undefined)
+            url_ += "LabTestOrderId=" + encodeURIComponent("" + labTestOrderId) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processFinishLabTest(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processFinishLabTest(<any>response_);
+                } catch (e) {
+                    return <Observable<LabTestResult>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<LabTestResult>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processFinishLabTest(response: HttpResponseBase): Observable<LabTestResult> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server side error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <LabTestResult>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<LabTestResult>(<any>null);
     }
 }
 
@@ -804,6 +916,11 @@ export interface Doctor extends ValueObject {
     id: number;
     name?: string | undefined;
     surname?: string | undefined;
+}
+
+export interface LabTestResult {
+    id: number;
+    description?: string | undefined;
 }
 
 export interface ProblemDetails {
