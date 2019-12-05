@@ -1,0 +1,35 @@
+<mat-card *ngIf="labTestOrder$ | async as labTestOrder">
+  <section class="test-info">
+    <div>
+      <h1 class="mat-headline">Patient</h1>
+      <h3 class="mat-subheading-2">Name: {{ labTestOrder.patient.name }}</h3>
+      <h3 class="mat-subheading-2">Surname: {{ labTestOrder.patient.surname }}</h3>
+      <h3 class="mat-subheading-2">PESEL: {{ labTestOrder.patient.identityNumber }}</h3>
+    </div>
+    <div>
+      <h1 class="mat-headline">Test</h1>
+      <h3 class="mat-subheading-2">Name: {{ labTestOrder.name }}</h3>
+      <h3 class="mat-subheading-2">Note: {{ labTestOrder.doctorsNote }}</h3>
+    </div>
+  </section>
+  <form [formGroup]="labResultForm" (ngSubmit)="onSubmit(labResultForm.value, labTestOrder.id)">
+    <section>
+      <h1 class="mat-headline">Results</h1>
+      <mat-form-field class="result" appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="result" class="results-textarea" type="text"></textarea>
+      </mat-form-field>
+      <div>
+        <input formControlName="resultFile" class="file-input" type="file" />
+      </div>
+    </section>
+    <mat-card-actions align="right">
+      <button mat-button type="button" (click)="abort()">
+        Abort
+      </button>
+      <button mat-flat-button color="primary" type="submit" [disabled]="!labResultForm.valid">
+        Finish
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

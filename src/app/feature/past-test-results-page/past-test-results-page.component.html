@@ -1,0 +1,5 @@
+<app-generic-table
+  *ngIf="labResults$ | async as labResults"
+  [data]="labResults"
+  [columnsInfo]="columnsInfo"
+></app-generic-table>

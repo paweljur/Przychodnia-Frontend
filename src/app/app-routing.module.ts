@@ -8,6 +8,9 @@ import { AllAppointmentsPageComponent } from './feature/all-appointments-page/al
 import { MakeAppointmentPageComponent } from './feature/make-appointment-page/make-appointment-page.component';
 import { MyAppointmentsComponent } from './feature/my-appointments-page/my-appointments-page.component';
 import { PastVisitsComponent } from './feature/past-visits/past-visits.component';
+import { AllTestOrdersPageComponent } from './feature/all-test-orders-page/all-test-orders-page.component';
+import { TestResultPageComponent } from './feature/all-test-orders-page/test-result-page/test-result-page.component';
+import { PastTestResultsPageComponent } from './feature/past-test-results-page/past-test-results-page.component';
 
 const routes: Routes = [
   {
@@ -34,6 +37,18 @@ const routes: Routes = [
       {
         path: 'past-visits',
         component: PastVisitsComponent,
+      },
+      {
+        path: 'test-orders',
+        component: AllTestOrdersPageComponent,
+      },
+      {
+        path: 'test-result/:id',
+        component: TestResultPageComponent,
+      },
+      {
+        path: 'past-test-results',
+        component: PastTestResultsPageComponent,
       },
     ],
   },

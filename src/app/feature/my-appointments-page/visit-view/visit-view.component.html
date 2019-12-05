@@ -12,13 +12,21 @@
           <h1 class="mat-headline">Visit procedure</h1>
           <mat-form-field class="description" appearance="outline">
             <mat-label>Description</mat-label>
-            <textarea matInput formControlName="description" class="description-textarea" type="text"></textarea>
+            <textarea
+              matInput
+              formControlName="description"
+              class="description-textarea"
+              type="text"
+            ></textarea>
           </mat-form-field>
         </section>
         <section>
           <h1 class="mat-headline">Lab test orders</h1>
           <mat-accordion formArrayName="labTestOrders">
-            <mat-expansion-panel *ngFor="let labTestOrder of labTestOrders.controls; index as i" [formGroupName]="i">
+            <mat-expansion-panel
+              *ngFor="let labTestOrder of labTestOrders.controls; index as i"
+              [formGroupName]="i"
+            >
               <mat-expansion-panel-header>
                 {{ labTestOrder.value.name ? labTestOrder.value.name : 'New lab test' }}
               </mat-expansion-panel-header>
@@ -55,6 +63,33 @@
     </mat-card>
   </mat-tab>
   <mat-tab label="Patients History">
-    <div>historia pacjenta</div>
+    <div *ngIf="patientHistory$ | async as patientHistory">
+      <mat-card class="patient-history">
+        <div class="accordion">
+          <h1 class="mat-headline">Visit history</h1>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let visit of patientHistory.visits">
+              <mat-expansion-panel-header>
+                {{ visit.appointment.appointmentDate | date }}
+              </mat-expansion-panel-header>
+              <h3 class="mat-subheading-1">Description: {{ visit.description }}</h3>
+              <h3 class="mat-subheading-1">Diagnosis: {{ visit.diagnosis }}</h3>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+
+        <div class="accordion">
+          <h1 class="mat-headline">Lab results</h1>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let exam of patientHistory.testResults">
+              <mat-expansion-panel-header>
+                {{ exam.testName }}
+              </mat-expansion-panel-header>
+              <h3 class="mat-subheading-1">Result: {{ exam.result }}</h3>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </mat-card>
+    </div>
   </mat-tab>
 </mat-tab-group>
