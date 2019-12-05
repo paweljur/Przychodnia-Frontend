@@ -40,6 +40,7 @@ import { PastVisitsComponent } from './feature/past-visits/past-visits.component
 import { VisitDetailsDialogComponent } from './feature/past-visits/visit-details-dialog/visit-details-dialog.component';
 import { AllTestOrdersPageComponent } from './feature/all-test-orders-page/all-test-orders-page.component';
 import { TestResultPageComponent } from './feature/all-test-orders-page/test-result-page/test-result-page.component';
+import { PastTestResultsPageComponent } from './feature/past-test-results-page/past-test-results-page.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { TestResultPageComponent } from './feature/all-test-orders-page/test-res
     VisitDetailsDialogComponent,
     AllTestOrdersPageComponent,
     TestResultPageComponent,
+    PastTestResultsPageComponent,
   ],
   imports: [
     BrowserModule,
