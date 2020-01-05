@@ -14,7 +14,8 @@ export class AllAppointmentsPageComponent implements OnInit {
     {
       columnDef: 'patient',
       header: 'Patient',
-      cell: (element: Appointment): string => `${element.patient.name || ''} ${element.patient.surname || ''}`,
+      cell: (element: Appointment): string =>
+        `${element.patient.name || ''} ${element.patient.surname || ''}`,
     },
     {
       columnDef: 'pesel',
@@ -29,7 +30,8 @@ export class AllAppointmentsPageComponent implements OnInit {
     {
       columnDef: 'date',
       header: 'Date',
-      cell: (element: Appointment): string => `${new Date(element.appointmentDate).toLocaleDateString()}`,
+      cell: (element: Appointment): string =>
+        `${new Date(element.appointmentDate).toISOString().slice(0, 10)}`,
     },
     {
       columnDef: 'time',
@@ -41,6 +43,8 @@ export class AllAppointmentsPageComponent implements OnInit {
   constructor(private _registrationService: RegistrationServiceProxy) {}
 
   ngOnInit(): void {
-    this._registrationService.getAllAppointments().subscribe((appointments: Appointment[]) => (this.appointments = appointments));
+    this._registrationService
+      .getAllAppointments()
+      .subscribe((appointments: Appointment[]) => (this.appointments = appointments));
   }
 }

@@ -27,7 +27,8 @@ export class MyAppointmentsComponent implements OnInit {
     {
       columnDef: 'date',
       header: 'Date',
-      cell: (element: Appointment): string => `${new Date(element.appointmentDate).toLocaleDateString()}`,
+      cell: (element: Appointment): string =>
+        `${new Date(element.appointmentDate).toISOString().slice(0, 10)}`,
     },
     {
       columnDef: 'time',

@@ -29,7 +29,7 @@ export class PastVisitsComponent implements OnInit {
       columnDef: 'date',
       header: 'Date',
       cell: (element: Visit): string =>
-        `${new Date(element.appointment.appointmentDate).toLocaleDateString()}`,
+        `${new Date(element.appointment.appointmentDate).toISOString().slice(0, 10)}`,
     },
     {
       columnDef: 'time',
