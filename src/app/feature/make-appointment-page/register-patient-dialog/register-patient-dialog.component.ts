@@ -33,7 +33,7 @@ export class RegisterPatientDialogComponent implements OnInit {
       surname: this.newPatientForm.value.surname,
       identityNumber: this.newPatientForm.value.identityNumber.toString(),
     };
-    this._registrationService.addNewPatient(newPatient).subscribe(
+    this._registrationService.registerPatient(newPatient).subscribe(
       (patient: Patient) => {
         this.showPositiveSnackBar();
         this._dialogRef.close(patient);

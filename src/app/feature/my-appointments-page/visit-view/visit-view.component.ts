@@ -63,4 +63,8 @@ export class VisitViewComponent implements OnInit {
       })
     );
   }
+
+  removeTest(index: number): void {
+    this.labTestOrders.removeAt(index);
+  }
 }

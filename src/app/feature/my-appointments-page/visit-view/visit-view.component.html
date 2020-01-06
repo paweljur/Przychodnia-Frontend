@@ -38,6 +38,10 @@
                 <mat-label>Note</mat-label>
                 <textarea matInput class="note-textarea" formControlName="doctorsNote" type="text"></textarea>
               </mat-form-field>
+
+              <mat-action-row>
+                <button mat-flat-button color="primary" (click)="removeTest(i)" type="button">Remove</button>
+              </mat-action-row>
             </mat-expansion-panel>
           </mat-accordion>
           <button mat-flat-button color="primary" class="new-button" (click)="addTest()" type="button">

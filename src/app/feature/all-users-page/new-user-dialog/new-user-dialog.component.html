@@ -1,23 +1,35 @@
-<h1 mat-dialog-title>Add patient</h1>
+<h1 mat-dialog-title>New user</h1>
 <form [formGroup]="newUserForm">
   <mat-form-field>
     <input matInput formControlName="username" placeholder="Username" required />
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput formControlName="password" placeholder="Password" type="password" required />
+    <input
+      matInput
+      formControlName="password"
+      placeholder="Password"
+      type="password"
+      minlength="11"
+      required
+    />
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput formControlName="name" placeholder="Name" />
+    <input matInput formControlName="name" placeholder="Name" required />
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput formControlName="surname" placeholder="Surname" />
+    <input matInput formControlName="surname" placeholder="Surname" required />
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput formControlName="role" placeholder="Role" required />
+    <mat-label>Role</mat-label>
+    <mat-select formControlName="role" required>
+      <mat-option *ngFor="let role of ['admin', 'doctor', 'laborant', 'registrant']" [value]="role">
+        {{ role | titlecase }}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
   <button mat-flat-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!newUserForm.valid">

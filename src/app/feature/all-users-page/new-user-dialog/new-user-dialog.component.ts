@@ -17,7 +17,11 @@ export class NewUserDialogComponent {
     role: new FormControl(),
   });
 
-  constructor(private _dialogRef: MatDialogRef<Component>, private _userService: UserServiceProxy, private _snackBar: MatSnackBar) {}
+  constructor(
+    private _dialogRef: MatDialogRef<Component>,
+    private _userService: UserServiceProxy,
+    private _snackBar: MatSnackBar
+  ) {}
 
   abort(): void {
     this._dialogRef.close();

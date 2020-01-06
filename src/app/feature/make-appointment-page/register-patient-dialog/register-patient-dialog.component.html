@@ -1,11 +1,11 @@
 <h1 mat-dialog-title>Register patient</h1>
 <form [formGroup]="newPatientForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
-    <input matInput formControlName="name" placeholder="Name" />
+    <input matInput formControlName="name" placeholder="Name" required />
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput formControlName="surname" placeholder="Surname" />
+    <input matInput formControlName="surname" placeholder="Surname" required />
   </mat-form-field>
 
   <mat-form-field>
