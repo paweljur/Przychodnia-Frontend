@@ -32,7 +32,6 @@ export class TestResultPageComponent implements OnInit {
     );
     this.labResultForm = this._fb.group({
       result: [null],
-      resultFile: [null],
     });
   }
 
