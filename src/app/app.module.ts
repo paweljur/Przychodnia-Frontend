@@ -18,7 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
-import { CurrentUserComponent } from './main/components/current-user/current-user.component';
+import { CurrentUserComponent } from './main/current-user/current-user.component';
 import { SharedModule } from './shared/shared.module';
 import { AllUsersPageComponent } from './feature/all-users-page/all-users-page.component';
 import { NewUserDialogComponent } from './feature/all-users-page/new-user-dialog/new-user-dialog.component';
