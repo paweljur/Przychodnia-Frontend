@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistrationServiceProxy, Patient } from 'src/core/api/service-proxies';
+import { RegistrationServiceProxy, Patient } from 'src/app/core/api/service-proxies';
 import { ColumnInfoItem } from 'src/app/shared/generic-table/models/ColumnInfoItem';
 import { MatDialog } from '@angular/material';
 import { RegisterPatientDialogComponent } from './register-patient-dialog/register-patient-dialog.component';

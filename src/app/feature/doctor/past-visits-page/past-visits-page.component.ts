@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DoctorServiceProxy, Visit } from 'src/core/api/service-proxies';
+import { DoctorServiceProxy, Visit } from 'src/app/core/api/service-proxies';
 import { ColumnInfoItem } from 'src/app/shared/generic-table/models/ColumnInfoItem';
 import { MatDialog } from '@angular/material';
 import { VisitDetailsDialogComponent } from './visit-details-dialog/visit-details-dialog.component';

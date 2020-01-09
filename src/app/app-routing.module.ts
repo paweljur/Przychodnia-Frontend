@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { MainComponent } from './main/main.component';
-import { AuthGuard } from 'src/core/guards/auth.guard';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { AllUsersPageComponent } from './feature/admin/all-users-page/all-users-page.component';
 import { AllAppointmentsPageComponent } from './feature/registration/all-appointments-page/all-appointments-page.component';
 import { MakeAppointmentPageComponent } from './feature/registration/make-appointment-page/make-appointment-page.component';

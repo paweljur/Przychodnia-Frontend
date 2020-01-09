@@ -1,7 +1,19 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Doctor, RegistrationServiceProxy, NewAppointmentDto, Patient, ApiError } from 'src/core/api/service-proxies';
+import {
+  Doctor,
+  RegistrationServiceProxy,
+  NewAppointmentDto,
+  Patient,
+  ApiError,
+} from 'src/app/core/api/service-proxies';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBarRef, SimpleSnackBar, MatSnackBar } from '@angular/material';
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatSnackBarRef,
+  SimpleSnackBar,
+  MatSnackBar,
+} from '@angular/material';
 
 @Component({
   selector: 'app-make-appointment-dialog',

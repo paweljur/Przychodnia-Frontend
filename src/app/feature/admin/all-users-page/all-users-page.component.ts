@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserServiceProxy, UserInfo } from 'src/core/api/service-proxies';
+import { UserServiceProxy, UserInfo } from 'src/app/core/api/service-proxies';
 import { ColumnInfoItem } from 'src/app/shared/generic-table/models/ColumnInfoItem';
 import { MatDialog } from '@angular/material';
 import { NewUserDialogComponent } from './new-user-dialog/new-user-dialog.component';

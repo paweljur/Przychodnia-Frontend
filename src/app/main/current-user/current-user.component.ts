@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { LoggedInUserDto } from 'src/core/api/service-proxies';
-import { AuthenticationService } from 'src/core/services/authentication.service';
+import { LoggedInUserDto } from 'src/app/core/api/service-proxies';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-current-user',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Appointment, DoctorServiceProxy } from 'src/core/api/service-proxies';
+import { Appointment, DoctorServiceProxy } from 'src/app/core/api/service-proxies';
 import { ColumnInfoItem } from 'src/app/shared/generic-table/models/ColumnInfoItem';
 import { SelectedOption } from 'src/app/shared/generic-table/models/SelectedOption';
 import { switchMap } from 'rxjs/operators';

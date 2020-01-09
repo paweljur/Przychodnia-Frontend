@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
-import { Visit } from 'src/core/api/service-proxies';
+import { Visit } from 'src/app/core/api/service-proxies';
 
 @Component({
   selector: 'app-visit-details-dialog',

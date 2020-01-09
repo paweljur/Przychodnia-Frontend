@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Appointment, DoctorServiceProxy, PatientHistory } from 'src/core/api/service-proxies';
+import { Appointment, DoctorServiceProxy, PatientHistory } from 'src/app/core/api/service-proxies';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
 

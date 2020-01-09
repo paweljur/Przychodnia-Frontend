@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistrationServiceProxy, Appointment } from 'src/core/api/service-proxies';
+import { RegistrationServiceProxy, Appointment } from 'src/app/core/api/service-proxies';
 import { ColumnInfoItem } from 'src/app/shared/generic-table/models/ColumnInfoItem';
 
 @Component({

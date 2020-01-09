@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LaboratoryServiceProxy, LabTestResult } from 'src/core/api/service-proxies';
+import { LaboratoryServiceProxy, LabTestResult } from 'src/app/core/api/service-proxies';
 import { Observable } from 'rxjs';
 import { ColumnInfoItem } from 'src/app/shared/generic-table/models/ColumnInfoItem';
 

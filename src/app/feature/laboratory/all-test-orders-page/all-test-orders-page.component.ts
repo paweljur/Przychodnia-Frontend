@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LaboratoryServiceProxy, LabTestOrder } from 'src/core/api/service-proxies';
+import { LaboratoryServiceProxy, LabTestOrder } from 'src/app/core/api/service-proxies';
 import { ColumnInfoItem } from 'src/app/shared/generic-table/models/ColumnInfoItem';
 import { SelectedOption } from 'src/app/shared/generic-table/models/SelectedOption';
 import { Router } from '@angular/router';

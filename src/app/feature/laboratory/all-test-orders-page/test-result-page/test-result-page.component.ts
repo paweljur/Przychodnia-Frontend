@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { LaboratoryServiceProxy, LabTestOrder, LabTestResult } from 'src/core/api/service-proxies';
+import { LaboratoryServiceProxy, LabTestOrder, LabTestResult } from 'src/app/core/api/service-proxies';
 import { Observable } from 'rxjs/internal/Observable';
 import { FormGroup, FormBuilder } from '@angular/forms';
 

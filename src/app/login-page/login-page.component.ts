@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginCredentialsDto, ApiError } from 'src/core/api/service-proxies';
-import { AuthenticationService } from 'src/core/services/authentication.service';
+import { LoginCredentialsDto, ApiError } from 'src/app/core/api/service-proxies';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { Router } from '@angular/router';
 import { MatSnackBar, SimpleSnackBar, MatSnackBarRef } from '@angular/material';
 

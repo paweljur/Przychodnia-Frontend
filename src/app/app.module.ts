@@ -40,7 +40,7 @@ import { VisitDetailsDialogComponent } from './feature/doctor/past-visits-page/v
 import { AllTestOrdersPageComponent } from './feature/laboratory/all-test-orders-page/all-test-orders-page.component';
 import { TestResultPageComponent } from './feature/laboratory/all-test-orders-page/test-result-page/test-result-page.component';
 import { PastTestResultsPageComponent } from './feature/laboratory/past-test-results-page/past-test-results-page.component';
-import { CoreModule } from 'src/core/core.module';
+import { CoreModule } from './core/core.module';
 @NgModule({
   declarations: [
     AppComponent,

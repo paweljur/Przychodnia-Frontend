@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { RegistrationServiceProxy, NewPatientDto, ApiError, Patient } from 'src/core/api/service-proxies';
+import { RegistrationServiceProxy, NewPatientDto, ApiError, Patient } from 'src/app/core/api/service-proxies';
 import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material';
 

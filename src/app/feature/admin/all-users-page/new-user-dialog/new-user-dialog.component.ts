@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef, MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material';
 import { FormGroup, FormControl } from '@angular/forms';
-import { NewUserDto, UserServiceProxy, ApiError, UserInfo } from 'src/core/api/service-proxies';
+import { NewUserDto, UserServiceProxy, ApiError, UserInfo } from 'src/app/core/api/service-proxies';
 
 @Component({
   selector: 'app-new-user-dialog',

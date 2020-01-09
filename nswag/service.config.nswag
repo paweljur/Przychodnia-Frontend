@@ -62,7 +62,7 @@
       "enumNameGeneratorType": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "../src/core/api/service-proxies.ts"
+      "output": "../src/app/core/api/service-proxies.ts"
     },
     "openApiToCSharpClient": {
       "clientBaseClass": null,

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { AuthenticationService } from 'src/core/services/authentication.service';
-import { LoggedInUserDto } from 'src/core/api/service-proxies';
 import { Router } from '@angular/router';
+import { LoggedInUserDto } from 'src/app/core/api/service-proxies';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-main',
