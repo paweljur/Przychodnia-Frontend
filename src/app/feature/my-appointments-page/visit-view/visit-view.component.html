@@ -2,14 +2,14 @@
   <mat-tab label="Current Visit">
     <mat-card class="current-visit">
       <section class="patient-info">
-        <h1 class="mat-headline">Patient</h1>
-        <h3 class="mat-subheading-2">Name: {{ appointment.patient.name }}</h3>
-        <h3 class="mat-subheading-2">Surname: {{ appointment.patient.surname }}</h3>
-        <h3 class="mat-subheading-2">PESEL: {{ appointment.patient.identityNumber }}</h3>
+        <h2 class="mat-title">Patient</h2>
+        <p class="mat-body-1">Name: {{ appointment.patient.name }}</p>
+        <p class="mat-body-1">Surname: {{ appointment.patient.surname }}</p>
+        <p class="mat-body-1">PESEL: {{ appointment.patient.identityNumber }}</p>
       </section>
       <form [formGroup]="visitForm" (ngSubmit)="onSubmit(visitForm.value)">
         <section>
-          <h1 class="mat-headline">Visit procedure</h1>
+          <h2 class="mat-title">Visit description</h2>
           <mat-form-field class="description" appearance="outline">
             <mat-label>Description</mat-label>
             <textarea
@@ -21,7 +21,7 @@
           </mat-form-field>
         </section>
         <section>
-          <h1 class="mat-headline">Lab test orders</h1>
+          <h2 class="mat-title">Lab test orders</h2>
           <mat-accordion formArrayName="labTestOrders">
             <mat-expansion-panel
               *ngFor="let labTestOrder of labTestOrders.controls; index as i"
@@ -38,7 +38,6 @@
                 <mat-label>Note</mat-label>
                 <textarea matInput class="note-textarea" formControlName="doctorsNote" type="text"></textarea>
               </mat-form-field>
-
               <mat-action-row>
                 <button mat-flat-button color="primary" (click)="removeTest(i)" type="button">Remove</button>
               </mat-action-row>
@@ -49,7 +48,7 @@
           </button>
         </section>
         <section>
-          <h1 class="mat-headline">Diagnosis</h1>
+          <h2 class="mat-title">Visit Diagnosis</h2>
           <mat-form-field class="diagnosis" appearance="outline">
             <mat-label>Diagnosis</mat-label>
             <textarea matInput formControlName="diagnosis" class="diagnosis-textarea" type="text"></textarea>

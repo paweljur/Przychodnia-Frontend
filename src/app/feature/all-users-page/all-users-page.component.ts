@@ -50,6 +50,6 @@ export class AllUsersPageComponent implements OnInit {
     this._dialog
       .open(NewUserDialogComponent)
       .afterClosed()
-      .subscribe((newUser: UserInfo) => this.users.push(newUser));
+      .subscribe((newUser: UserInfo) => newUser && this.users.push(newUser));
   }
 }

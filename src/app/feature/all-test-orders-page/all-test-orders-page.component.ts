@@ -27,7 +27,7 @@ export class AllTestOrdersPageComponent implements OnInit {
     },
     {
       columnDef: 'orderName',
-      header: 'OrderName',
+      header: 'Name',
       cell: (element: LabTestOrder): string => element.name,
     },
     {

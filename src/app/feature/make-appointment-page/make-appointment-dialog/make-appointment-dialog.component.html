@@ -2,8 +2,10 @@
 <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Doctors</mat-label>
-    <mat-select formControlName="doctor">
-      <mat-option *ngFor="let doctor of doctors" [value]="doctor"> {{ doctor.name }} {{ doctor.surname }} </mat-option>
+    <mat-select formControlName="doctor" required>
+      <mat-option *ngFor="let doctor of doctors" [value]="doctor">
+        {{ doctor.name }} {{ doctor.surname }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
 

@@ -5,36 +5,36 @@
     max-width: 700px;
     margin: 20px auto;
 
-    .diagnosis,
-    .description {
-      width: 100%;
+    section {
+      padding: 20px 20px 0 20px;
 
-      &-textarea {
-        height: 10vh;
+      .diagnosis,
+      .description {
+        width: 100%;
+
+        &-textarea {
+          height: 5em;
+        }
+      }
+
+      .name {
+        display: block;
+        width: 400px;
+      }
+
+      .note {
+        display: block;
+        width: 90%;
+
+        &-textarea {
+          height: 5em;
+        }
+      }
+
+      > .mat-flat-button {
+        margin-top: 20px;
       }
     }
-
-    .name {
-      display: block;
-      width: 400px;
-    }
-
-    .note {
-      display: block;
-      width: 90%;
-
-      &-textarea {
-        height: 200px;
-      }
-    }
-
-    .mat-flat-button {
-      margin-top: 20px;
-    }
-  }
-
-  section {
-    padding: 20px 20px 0 20px;
   }
 
   .patient-history {

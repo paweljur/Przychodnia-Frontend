@@ -36,8 +36,8 @@ import { RegisterPatientDialogComponent } from './feature/make-appointment-page/
 import { MakeAppointmentDialogComponent } from './feature/make-appointment-page/make-appointment-dialog/make-appointment-dialog.component';
 import { MyAppointmentsComponent } from './feature/my-appointments-page/my-appointments-page.component';
 import { VisitViewComponent } from './feature/my-appointments-page/visit-view/visit-view.component';
-import { PastVisitsComponent } from './feature/past-visits/past-visits.component';
-import { VisitDetailsDialogComponent } from './feature/past-visits/visit-details-dialog/visit-details-dialog.component';
+import { PastVisitsComponent } from './feature/past-visits-page/past-visits-page.component';
+import { VisitDetailsDialogComponent } from './feature/past-visits-page/visit-details-dialog/visit-details-dialog.component';
 import { AllTestOrdersPageComponent } from './feature/all-test-orders-page/all-test-orders-page.component';
 import { TestResultPageComponent } from './feature/all-test-orders-page/test-result-page/test-result-page.component';
 import { PastTestResultsPageComponent } from './feature/past-test-results-page/past-test-results-page.component';

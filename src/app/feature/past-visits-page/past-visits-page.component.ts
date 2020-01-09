@@ -5,9 +5,9 @@ import { MatDialog } from '@angular/material';
 import { VisitDetailsDialogComponent } from './visit-details-dialog/visit-details-dialog.component';
 
 @Component({
-  selector: 'app-past-visits',
-  templateUrl: './past-visits.component.html',
-  styleUrls: ['./past-visits.component.scss'],
+  selector: 'app-past-visits-page',
+  templateUrl: './past-visits-page.component.html',
+  styleUrls: ['./past-visits-page.component.scss'],
 })
 export class PastVisitsComponent implements OnInit {
   visits: Visit[] = [];

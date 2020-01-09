@@ -13,6 +13,9 @@
       minlength="11"
       required
     />
+    <mat-error *ngIf="newUserForm.controls['password'].errors?.minlength">
+      Minimal length is 11 characters
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>

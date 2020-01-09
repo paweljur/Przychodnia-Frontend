@@ -67,9 +67,11 @@ export class MakeAppointmentPageComponent implements OnInit {
     this._dialog
       .open(RegisterPatientDialogComponent)
       .afterClosed()
-      .subscribe((newUser: Patient) => {
-        this._patients.push(newUser);
-        this.filterPatients();
+      .subscribe((newPatient: Patient) => {
+        if (newPatient) {
+          this._patients.push(newPatient);
+          this.filterPatients();
+        }
       });
   }
 

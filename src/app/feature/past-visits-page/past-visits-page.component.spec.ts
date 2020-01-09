@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PastVisitsComponent } from './past-visits.component';
+import { PastVisitsComponent } from './past-visits-page.component';
 
 describe('PastVisitsComponent', () => {
   let component: PastVisitsComponent;
