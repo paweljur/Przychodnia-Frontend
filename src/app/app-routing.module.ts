@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { MainComponent } from './main/main.component';
 import { AuthGuard } from 'src/core/guards/auth.guard';
-import { AllUsersPageComponent } from './feature/all-users-page/all-users-page.component';
-import { AllAppointmentsPageComponent } from './feature/all-appointments-page/all-appointments-page.component';
-import { MakeAppointmentPageComponent } from './feature/make-appointment-page/make-appointment-page.component';
-import { MyAppointmentsComponent } from './feature/my-appointments-page/my-appointments-page.component';
-import { PastVisitsComponent } from './feature/past-visits-page/past-visits-page.component';
-import { AllTestOrdersPageComponent } from './feature/all-test-orders-page/all-test-orders-page.component';
-import { TestResultPageComponent } from './feature/all-test-orders-page/test-result-page/test-result-page.component';
-import { PastTestResultsPageComponent } from './feature/past-test-results-page/past-test-results-page.component';
+import { AllUsersPageComponent } from './feature/admin/all-users-page/all-users-page.component';
+import { AllAppointmentsPageComponent } from './feature/registration/all-appointments-page/all-appointments-page.component';
+import { MakeAppointmentPageComponent } from './feature/registration/make-appointment-page/make-appointment-page.component';
+import { MyAppointmentsComponent } from './feature/doctor/my-appointments-page/my-appointments-page.component';
+import { PastVisitsComponent } from './feature/doctor/past-visits-page/past-visits-page.component';
+import { AllTestOrdersPageComponent } from './feature/laboratory/all-test-orders-page/all-test-orders-page.component';
+import { TestResultPageComponent } from './feature/laboratory/all-test-orders-page/test-result-page/test-result-page.component';
+import { PastTestResultsPageComponent } from './feature/laboratory/past-test-results-page/past-test-results-page.component';
 
 const routes: Routes = [
   {
