@@ -1,20 +1,38 @@
 <div class="options">
   <mat-form-field class="options-left-item">
-    <input #name matInput placeholder="Patient name" [ngModel]="filterName" (ngModelChange)="filterPatients()" />
+    <input
+      #name
+      matInput
+      placeholder="Patient name"
+      [ngModel]="filterName"
+      (ngModelChange)="filterPatients()"
+    />
   </mat-form-field>
 
   <mat-form-field class="options-left-item">
-    <input #surname matInput placeholder="Patient surname" [ngModel]="filterSurname" (ngModelChange)="filterPatients()" />
+    <input
+      #surname
+      matInput
+      placeholder="Patient surname"
+      [ngModel]="filterSurname"
+      (ngModelChange)="filterPatients()"
+    />
   </mat-form-field>
 
   <span class="divider"></span>
 
   <button mat-button color="primary" (click)="openPatientDialog()">
-    Register patient
+    Register a patient
   </button>
 
-  <button class="options-right-item" mat-flat-button color="primary" [disabled]="selectedPatient == null" (click)="openAppointmentDialog()">
-    Make appointment
+  <button
+    class="options-right-item"
+    mat-flat-button
+    color="primary"
+    [disabled]="selectedPatient == null"
+    (click)="openAppointmentDialog()"
+  >
+    Make an appointment
   </button>
 </div>
 
